@@ -1,5 +1,3 @@
-
-import './index.scss';
 import App from './App';
 import {ReactDOM, React} from 'react';
 import { createStore, applyMiddleware } from 'redux';
