@@ -1,11 +1,9 @@
-import { combineReducers } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
+import reducers from './reducers';
+import logger from 'redux-logger';
+import ReduxPromise from 'redux-promise';
 
-// calling the default reducer to create a link
-import { queries } from './reducers/queries';
-
-const rootReducers = combineReducers({
-    // add reducer files references here
-    queries
-});
-
-export default rootReducers;
+export const store = createStore(
+    reducers,
+    applyMiddleware(logger, ReduxPromise)
+);
