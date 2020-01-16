@@ -1,5 +1,5 @@
-import React, { Component } from './node_modules/react';
-import styles from './sidebar'
+import React, { Component } from 'react';
+import styles from '../stylesheets/containers/sidebar.scss'
 
 export class Sidebar extends Component {
     render() {

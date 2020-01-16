@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import styles from '../stylesheets/components/searchbar.scss';
 
 export class SearchBar extends Component {
     constructor(props){

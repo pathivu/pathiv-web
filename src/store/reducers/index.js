@@ -1,4 +1,4 @@
-import { queries } from './queries';
+import queries from './queries';
 import { combineReducers } from 'redux';
 
 
