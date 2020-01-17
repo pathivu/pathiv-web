@@ -1,0 +1,19 @@
+@import '../variables.scss';
+
+.input {
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    border: 0;
+    background: $input-background;
+    padding: 1.2rem 1rem;
+    border-radius: 8px;
+    width: 100%;
+    color: $font-color;
+    font-size: 1.2rem;
+    letter-spacing: 1.13px;
+    outline: 0;
+}
+
+.input::placeholder{
+    color: $text-block-background;
+}

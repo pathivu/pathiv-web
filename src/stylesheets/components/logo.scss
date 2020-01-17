@@ -1,0 +1,18 @@
+@import '../variables.scss';
+
+.logo {
+    svg {
+        width: 185px;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: $responsive-breakpoint){
+
+    .logo {
+        svg {
+            width: 140px;
+        }
+    }
+}
+

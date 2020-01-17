@@ -3,7 +3,7 @@ import reducers from './reducers';
 import logger from 'redux-logger';
 import ReduxPromise from 'redux-promise';
 
-export const store = createStore(
+export default createStore(
     reducers,
     applyMiddleware(logger, ReduxPromise)
 );
