@@ -1,5 +1,5 @@
 
-Pathivu is a log aggregation system. This is a project to visualise the response gathered from the backend deployed. Learn more about it [here](https://github.com/pathivu/pathivu).
+Pathivu is a log aggregation system. This is a project to visualise the response gathered from the pathivu backend. Learn more about it [here](https://github.com/pathivu/pathivu).
 
 ### `yarn start`
 
