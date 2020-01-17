@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styles from '../stylesheets/components/searchbar.scss';
+import '../stylesheets/components/searchbox.scss';
 
-export class SearchBar extends Component {
+export class SearchBox extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -16,15 +16,9 @@ export class SearchBar extends Component {
         })
     }
 
-    
-
     render() {
         const { value } =this.state;
-        return (
-            <div className={styles.searchbar}>
-                <input className={styles.input} onChange={value}/>
-            </div>
-        )
+        return (<input className="input" placeholder="Search Something..." value={value} onChange={value}/>)
     }
 }
 
@@ -36,4 +30,4 @@ const mapDispatchToProps = {
     
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBox)
