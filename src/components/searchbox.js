@@ -17,8 +17,8 @@ export class SearchBox extends Component {
     }
 
     render() {
-        const { value } =this.state;
-        return (<input className="input" placeholder="Search Something..." value={value} onChange={value}/>)
+        const { value } = this.state;
+        return (<input className="input" placeholder="Search Something..." value={value} onChange={this.onChange}/>)
     }
 }
 

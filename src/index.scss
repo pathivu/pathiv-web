@@ -1,13 +1,10 @@
+@import './stylesheets/variables.scss';
+
 body {
   margin: 0;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #191928;
-  color: #fff;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  background: $background;
+  color: $font-color;
 }

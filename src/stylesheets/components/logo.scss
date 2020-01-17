@@ -1,3 +1,5 @@
+@import '../variables.scss';
+
 .logo {
     svg {
         width: 185px;
@@ -5,7 +7,7 @@
     }
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: $responsive-breakpoint){
 
     .logo {
         svg {
