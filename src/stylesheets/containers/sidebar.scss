@@ -1,3 +1,5 @@
+@import '../variables.scss';
+
 .sidebar {
     width: 25%;
     position: relative;
@@ -5,18 +7,30 @@
         padding-top: 2.4rem;
         font-weight: 700;
         font-size: 1.8rem;
-        color: #fff;
+        color: $font-color;
     }
     .selector {
         padding-top: 2.4rem;
         padding-left: 20px;
         label {
             font-weight: 500;
-            color: #fff;
-            font-size: 1.4rem;
+            color: $font-color;
+            font-size: $font-size;
         }
         .selectContainer {
             margin-top: 1.5rem;
         }
+    }
+}
+
+@media screen and (max-width: 768px){
+    .sidebar{
+        width: inherit;
+        padding: 1.2rem;
+        box-sizing: border-box;
+    }
+    .selector{
+        padding: 1.2rem;
+        box-sizing: border-box;
     }
 }
