@@ -1,37 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import {  changeFormValue } from '../store/actions/';
 import '../stylesheets/components/searchbox.scss';
 
-export class SearchBox extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: ''
-    };
-  }
-
-  onChange = e => {
-    this.setState({
+const SearchBox = ({ form, changeFormValue }) => {
+  const handleTextInput = (e) => {
+    changeFormValue({
+      field: 'query',
       value: e.target.value
     });
   };
+  return (
+    <input
+      className="input"
+      placeholder="Search Something..."
+      value={form.query}
+      onChange={handleTextInput}
+    />
+  );
+};
 
-  render() {
-    const { value } = this.state;
-    return (
-      <input
-        className="input"
-        placeholder="Search Something..."
-        value={value}
-        onChange={this.onChange}
-      />
-    );
-  }
-}
+const mapStateToProps = ({ form }) => ({
+  form
+});
 
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = {};
+const mapDispatchToProps = dispatch => ({
+  changeFormValue: ({ field, value }) => dispatch(changeFormValue({ field, value }))
+});
 
 export default connect(
   mapStateToProps,

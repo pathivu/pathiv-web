@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import '../stylesheets/components/select.scss';
 
-export class Select extends Component {
-  render() {
-    const { value, microservices, onChangeSelect } = this.props;
+const Select = ({ partitions, value, microservices, onChangeSelect }) => {
+  return (
+    <select className="select" value={value} onChange={onChangeSelect}>
+      {partitions.map(partition => (
+        <option value={partition}>{partition}</option>
+      ))}
+      {/* <option value={1}>Microservice #1</option>
+      <option value={2}>Microservice #2</option> */}
+    </select>
+  );
+};
 
-    return (
-      <select className="select" value={value} onChange={onChangeSelect}>
-        <option value={1}>Microservice #1</option>
-        <option value={2}>Microservice #2</option>
-      </select>
-    );
-  }
-}
-
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = {};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Select);
+export default Select;

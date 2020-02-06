@@ -1,26 +1,50 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import SearchBox from '../components/searchbox';
 import Visualiser from '../containers/Visualiser';
 import '../stylesheets/containers/content.scss';
-import { connect } from 'react-redux';
+import { fetchQueries } from '../store/actions';
 
-export class Content extends Component {
-  render() {
-    return (
-      <div className="content">
-        <div className="searchbar">
-          <SearchBox />
-          <div className="separator"></div>
-          <Visualiser />
-        </div>
+const Content = ({ form, fetchQueries }) => {
+  useEffect(() => {
+    fetchQueries({
+      ...form.input
+    });
+  }, [form.input.query]);
+  return (
+    <div className="content">
+      <div className="searchbar">
+        <SearchBox/>
+        <div className="separator"/>
+        <Visualiser/>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-const mapStateToProps = state => ({});
+const mapStateToProps = ({ form }) => ({
+  form
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+  fetchQueries: ({
+    query,
+    start_ts,
+    end_ts,
+    count,
+    offset,
+    partitions,
+    forward
+  }) => dispatch(fetchQueries({
+    query,
+    start_ts,
+    end_ts,
+    count,
+    offset,
+    partitions,
+    forward
+  }))
+});
 
 export default connect(
   mapStateToProps,

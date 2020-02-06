@@ -1,12 +1,23 @@
-// default reducer
-// Note: You can remove this reducer and create your own reducer
+import { SET_PARTITIONS, SET_QUERIES } from '../constants';
 
-import { FETCH_DATA } from '../actions';
+const initialState = {
+  partitionsLoading: false,
+  partitions: [],
+  queries: []
+};
 
-export default (state = {}, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_DATA:
-      return action.payload;
+    case SET_PARTITIONS:
+      return {
+        ...state,
+        partitions: action.partitions
+      };
+    case SET_QUERIES:
+      return {
+        ...state,
+        queries: action.queries
+      };
     default:
       return state;
   }

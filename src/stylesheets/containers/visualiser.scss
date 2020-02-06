@@ -6,3 +6,10 @@
   padding: 1.2rem;
   border-radius: $border-radius;
 }
+
+.row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
