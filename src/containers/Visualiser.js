@@ -1,14 +1,40 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import '../stylesheets/containers/visualiser.scss';
+
+const bigJSON = {
+  name: 'Rahul Krishna',
+  age: 22,
+  relationshipStatus: 'committed',
+  nationality: 'Indian',
+  politicalLeaning: 'left',
+  politicalAffiliation: 'Communist Party of India (Marxist)'
+};
+
+const JsonContent = ({ children }) => {
+  const [expanded, expand] = useState(false);
+  return (
+    <div
+      className="json-content"
+      onClick={() => expand(!expanded)}
+      style={{
+        overflow: expanded ? 'visible' : 'hidden',
+        whiteSpace: expanded ? 'pre-wrap' : 'nowrap',
+        overflowWrap: expanded ? 'break-word' : 'unset'
+      }}
+    >
+      {JSON.stringify({ ...children, ...bigJSON })}
+    </div>
+  );
+};
 
 const Visualiser = ({ queries }) => {
   return (
     <div className="visualiser">
       {queries.map(query => (
         <div className="row">
-          <div>{JSON.stringify(query.entry)}</div>
+          <JsonContent>{query.entry}</JsonContent>
           <div>
             {query.ts
               ? moment.unix(query.ts).format('YYYY-MM-DD HH:mm:ss')

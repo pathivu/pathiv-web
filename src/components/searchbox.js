@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {  changeFormValue } from '../store/actions/';
+import {  setInput } from '../store/actions/';
 import '../stylesheets/components/searchbox.scss';
 
-const SearchBox = ({ form, changeFormValue }) => {
+const SearchBox = ({ form, setInput }) => {
   const handleTextInput = (e) => {
-    changeFormValue({
+    setInput({
       field: 'query',
       value: e.target.value
     });
@@ -25,7 +25,7 @@ const mapStateToProps = ({ form }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeFormValue: ({ field, value }) => dispatch(changeFormValue({ field, value }))
+  setInput: ({ field, value }) => dispatch(setInput({ field, value }))
 });
 
 export default connect(

@@ -54,7 +54,7 @@ const setQueries = queries => ({
   queries
 });
 
-export const changeFormValue = ({ field, value }) => ({
+export const setInput = ({ field, value }) => ({
   type: SET_INPUT,
   field,
   value

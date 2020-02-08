@@ -10,13 +10,13 @@ const Content = ({ form, fetchQueries }) => {
     fetchQueries({
       ...form.input
     });
-  }, [form.input.query]);
+  }, [fetchQueries, form.input]);
   return (
     <div className="content">
       <div className="searchbar">
-        <SearchBox/>
-        <div className="separator"/>
-        <Visualiser/>
+        <SearchBox />
+        <div className="separator" />
+        <Visualiser />
       </div>
     </div>
   );
@@ -26,7 +26,7 @@ const mapStateToProps = ({ form }) => ({
   form
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   fetchQueries: ({
     query,
     start_ts,
@@ -35,15 +35,18 @@ const mapDispatchToProps = (dispatch) => ({
     offset,
     partitions,
     forward
-  }) => dispatch(fetchQueries({
-    query,
-    start_ts,
-    end_ts,
-    count,
-    offset,
-    partitions,
-    forward
-  }))
+  }) =>
+    dispatch(
+      fetchQueries({
+        query,
+        start_ts,
+        end_ts,
+        count,
+        offset,
+        partitions,
+        forward
+      })
+    )
 });
 
 export default connect(

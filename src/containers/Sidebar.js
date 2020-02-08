@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import '../stylesheets/containers/sidebar.scss';
 import Logo from '../components/logo';
 import Select from '../components/select';
-import { fetchPartitions } from '../store/actions/index.js';
+import { fetchPartitions, setInput } from '../store/actions/index.js';
 
-const Sidebar = ({ partitions, fetchPartitions }) => {
+const Sidebar = ({ partitions, fetchPartitions, setInput }) => {
   useEffect(() => {
     fetchPartitions();
   }, [fetchPartitions]);
+  useEffect(() => {
+    setInput({ field: 'partitions', value: [partitions[0]] });
+  }, [partitions, setInput]);
   return (
     <div className="sidebar">
       <Logo />
@@ -19,7 +22,11 @@ const Sidebar = ({ partitions, fetchPartitions }) => {
           {partitions.length > 0 ? (
             <Select
               partitions={partitions}
-              onChangeSelect={e => console.log({ e: e.target.value })}
+              onChangeSelect={e => {
+                // Dispatch an action to set active partition
+                setInput({ field: 'partitions', value: [e.target.value] });
+                console.log({ e: e.target.value });
+              }}
             />
           ) : (
             'No Microservices found'
@@ -35,7 +42,8 @@ const mapStateToProps = ({ queries: { partitions } }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchPartitions: () => dispatch(fetchPartitions())
+  fetchPartitions: () => dispatch(fetchPartitions()),
+  setInput: ({ field, value }) => dispatch(setInput({ field, value }))
 });
 
 export default connect(

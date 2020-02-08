@@ -7,7 +7,7 @@ const initialState = {
     end_ts: 0,
     count: 1000,
     offset: 0,
-    partitions: ['demo'],
+    partitions: [],
     forward: false
   }
 };
