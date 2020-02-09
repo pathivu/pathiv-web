@@ -1,10 +1,19 @@
 import axios from 'axios';
-import { SET_INPUT, SET_PARTITIONS, SET_QUERIES } from '../constants';
+import { toast } from 'react-toastify';
+import {
+  SET_HOST_URL,
+  SET_INPUT,
+  SET_PARTITIONS,
+  SET_QUERIES,
+  TOGGLE_CONFIG_MODAL
+} from '../constants';
+
+const hostUrl = localStorage.getItem('hostUrl');
 
 export const fetchPartitions = () => dispatch =>
   axios({
     method: 'get',
-    url: '/partitions'
+    url: `${hostUrl}/partitions`
   })
     .then(data => {
       console.log({ data });
@@ -30,7 +39,7 @@ export const fetchQueries = ({
 }) => dispatch =>
   axios({
     method: 'post',
-    url: '/query',
+    url: `${hostUrl}/query`,
     data: {
       query,
       start_ts,
@@ -58,4 +67,24 @@ export const setInput = ({ field, value }) => ({
   type: SET_INPUT,
   field,
   value
+});
+
+export const toggleModal = ({ open }) => ({
+  type: TOGGLE_CONFIG_MODAL,
+  open
+});
+
+export const tryHostUrl = ({ url, callBack }) => dispatch =>
+  axios({
+    method: 'get',
+    url: `${url}/partitions`
+  })
+    .then(() => dispatch(setHostUrl({ url })) && callBack())
+    .catch(e =>
+      toast('Invalid URL. /partitions returned error', { type: 'error' })
+    );
+
+export const setHostUrl = ({ url }) => ({
+  type: SET_HOST_URL,
+  hostUrl
 });

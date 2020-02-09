@@ -13,14 +13,47 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 12px;
+  align-items: center;
   &:hover {
     background: #1e2f3e;
     cursor: pointer;
   }
   .json-content {
-    max-width: 500px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    pre {
+      font-family: Fira Code;
+      font-size: 14px;
+      max-width: 600px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  .json-content-expanded {
+    pre {
+      font-family: Fira Code;
+      font-size: 14px;
+      max-width: 600px;
+      overflow: scroll;
+      white-space: pre;
+      overflow-wrap: break-word;
+    }
+  }
+  .date-time {
+    font-weight: bold;
+    display: flex;
+    .time {
+      color: #00a8b0;
+      font-size: 14px;
+      margin-right: 10px;
+      font-family: Ubuntu;
+    }
+    .date {
+      color: #5c677c;
+      font-family: Ubuntu;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 0.88px;
+      line-height: 13px;
+    }
   }
 }

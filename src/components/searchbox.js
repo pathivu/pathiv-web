@@ -1,22 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {  setInput } from '../store/actions/';
+import { setInput, toggleModal } from '../store/actions/';
 import '../stylesheets/components/searchbox.scss';
 
-const SearchBox = ({ form, setInput }) => {
-  const handleTextInput = (e) => {
+const SearchBox = ({ form, setInput, toggleModal }) => {
+  const handleTextInput = e => {
     setInput({
       field: 'query',
       value: e.target.value
     });
   };
   return (
-    <input
-      className="input"
-      placeholder="Search Something..."
-      value={form.query}
-      onChange={handleTextInput}
-    />
+    <div className="searchbar-container">
+      <input
+        className="input"
+        placeholder="Search Something..."
+        value={form.query}
+        onChange={handleTextInput}
+      />
+      <i className="material-icons gear-icon" onClick={() => toggleModal({ open: true })}>settings</i>
+    </div>
   );
 };
 
@@ -25,7 +28,8 @@ const mapStateToProps = ({ form }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setInput: ({ field, value }) => dispatch(setInput({ field, value }))
+  setInput: ({ field, value }) => dispatch(setInput({ field, value })),
+  toggleModal: ({ open }) => dispatch(toggleModal({ open }))
 });
 
 export default connect(
