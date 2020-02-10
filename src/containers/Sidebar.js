@@ -5,7 +5,12 @@ import Logo from '../components/logo';
 import Select from '../components/select';
 import { fetchPartitions, setInput } from '../store/actions/index.js';
 
-const Sidebar = ({ partitions, fetchPartitions, setInput }) => {
+const Sidebar = ({
+  partitions,
+  fetchPartitions,
+  setInput,
+  selectedPartitions
+}) => {
   useEffect(() => {
     fetchPartitions();
   }, [fetchPartitions]);
@@ -25,8 +30,9 @@ const Sidebar = ({ partitions, fetchPartitions, setInput }) => {
               onChangeSelect={e => {
                 // Dispatch an action to set active partition
                 setInput({ field: 'partitions', value: [e.target.value] });
-                console.log({ e: e.target.value });
               }}
+              setInput={setInput}
+              selectedPartitions={selectedPartitions}
             />
           ) : (
             'No Microservices found'
@@ -37,8 +43,14 @@ const Sidebar = ({ partitions, fetchPartitions, setInput }) => {
   );
 };
 
-const mapStateToProps = ({ queries: { partitions } }) => ({
-  partitions
+const mapStateToProps = ({
+  queries: { partitions },
+  form: {
+    input: { partitions: selectedPartitions }
+  }
+}) => ({
+  partitions,
+  selectedPartitions
 });
 
 const mapDispatchToProps = dispatch => ({

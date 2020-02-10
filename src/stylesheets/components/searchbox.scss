@@ -3,7 +3,7 @@
 .searchbar-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   .input {
     -webkit-appearance: none;
     box-sizing: border-box;
@@ -11,7 +11,7 @@
     background: $input-background;
     padding: 1.2rem 1rem;
     border-radius: 8px;
-    width: 100%;
+    width: 80%;
     color: $font-color;
     font-size: 1.2rem;
     letter-spacing: 1.13px;
@@ -23,7 +23,38 @@
     color: $text-block-background;
   }
 
+  .time-input {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    margin-right: 12px;
+    .time-selected {
+      background: #00a8b0;
+      width: 68px;
+      padding: 1.2rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .time-dropdown {
+      position: absolute;
+      z-index: 2;
+      border-radius: 6px;
+      top: 56px;
+      width: 100px;
+      .time-option {
+        padding: 1.2rem 1rem;
+        cursor: pointer;
+        background: #00a8b0;
+        &:hover {
+          background: rgba(0, 168, 176, 0.5);
+        }
+      }
+    }
+  }
+
   .gear-icon {
     cursor: pointer;
+    margin-top: 12px;
   }
 }
