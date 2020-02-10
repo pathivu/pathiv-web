@@ -8,12 +8,15 @@ import {
   TOGGLE_CONFIG_MODAL
 } from '../constants';
 
-const hostUrl = localStorage.getItem('hostUrl');
-
 export const fetchPartitions = () => dispatch =>
   axios({
     method: 'get',
-    url: `${hostUrl}/partitions`
+    url:
+      console.log({ hostUrl: localStorage.getItem('hostUrl') }) ||
+      `${localStorage.getItem('hostUrl')}/partitions`,
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
   })
     .then(data => {
       console.log({ data });
@@ -39,7 +42,10 @@ export const fetchQueries = ({
 }) => dispatch =>
   axios({
     method: 'post',
-    url: `${hostUrl}/query`,
+    url: `${localStorage.getItem('hostUrl')}/query`,
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    },
     data: {
       query,
       start_ts,
@@ -77,14 +83,20 @@ export const toggleModal = ({ open }) => ({
 export const tryHostUrl = ({ url, callBack }) => dispatch =>
   axios({
     method: 'get',
-    url: `${url}/partitions`
+    url: `${url}/partitions`,
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
   })
-    .then(() => dispatch(setHostUrl({ url })) && callBack())
+    .then(() => {
+      dispatch(setHostUrl({ url }));
+      callBack();
+    })
     .catch(e =>
       toast('Invalid URL. /partitions returned error', { type: 'error' })
     );
 
 export const setHostUrl = ({ url }) => ({
   type: SET_HOST_URL,
-  hostUrl
+  url
 });

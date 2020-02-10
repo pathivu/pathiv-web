@@ -9,11 +9,13 @@ const Sidebar = ({
   partitions,
   fetchPartitions,
   setInput,
-  selectedPartitions
+  selectedPartitions,
+  hostUrl
 }) => {
   useEffect(() => {
+    console.log({ componentSays: hostUrl });
     fetchPartitions();
-  }, [fetchPartitions]);
+  }, [fetchPartitions, hostUrl]);
   useEffect(() => {
     setInput({ field: 'partitions', value: [partitions[0]] });
   }, [partitions, setInput]);
@@ -47,10 +49,14 @@ const mapStateToProps = ({
   queries: { partitions },
   form: {
     input: { partitions: selectedPartitions }
+  },
+  general: {
+    config: { hostUrl }
   }
 }) => ({
   partitions,
-  selectedPartitions
+  selectedPartitions,
+  hostUrl
 });
 
 const mapDispatchToProps = dispatch => ({

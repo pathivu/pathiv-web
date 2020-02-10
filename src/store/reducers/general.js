@@ -23,12 +23,12 @@ export default function(state = initialState, action) {
       };
     }
     case SET_HOST_URL: {
-      localStorage.setItem('hostUrl', action.hostUrl);
+      localStorage.setItem('hostUrl', action.url);
       return {
         ...state,
         config: {
           ...state.config,
-          hostUrl: action.hostUrl
+          hostUrl: action.url
         }
       };
     }
