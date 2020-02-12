@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setInput, toggleModal } from '../store/actions/';
 import { TIME_MAPPING } from '../utils/time';
 import '../stylesheets/components/searchbox.scss';
+import CustomDatePicker from './customdatepicker.js';
 
 const TIME_OPTIONS = [
   '30 Mins',
@@ -11,12 +12,14 @@ const TIME_OPTIONS = [
   '4 Hours',
   '6 Hours',
   '8 Hours',
-  '10 Hours'
+  '10 Hours',
+  'Custom'
 ];
 
 const SearchBox = ({ form, setInput, toggleModal }) => {
   const [timeDropdownOpen, openTimeDropdown] = useState(false);
   const [selectedTimeString, changeTimeString] = useState('30 Mins');
+  const [customTimeOpen, openCustomTime] = useState(false);
   const handleTextInput = e => {
     setInput({
       field: 'query',
@@ -25,8 +28,13 @@ const SearchBox = ({ form, setInput, toggleModal }) => {
   };
   const handleTimeSelect = time => {
     changeTimeString(time);
-    setInput({ field: 'start_ts', value: TIME_MAPPING[time].start_ts });
-    setInput({ field: 'end_ts', value: TIME_MAPPING[time].end_ts });
+    if (time !== 'Custom') {
+      setInput({ field: 'start_ts', value: TIME_MAPPING[time].start_ts });
+      setInput({ field: 'end_ts', value: TIME_MAPPING[time].end_ts });
+    } else {
+      // Handle the fuck out here
+      openCustomTime(true);
+    }
   };
   return (
     <div className="searchbar-container">
@@ -66,6 +74,16 @@ const SearchBox = ({ form, setInput, toggleModal }) => {
       >
         settings
       </i>
+      {customTimeOpen && (
+        <CustomDatePicker
+          closeModal={() => openCustomTime(false)}
+          setInput={setInput}
+          time={{
+            start_ts: form.input.start_ts,
+            end_ts: form.input.end_ts
+          }}
+        />
+      )}
     </div>
   );
 };
