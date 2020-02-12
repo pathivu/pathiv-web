@@ -13,7 +13,6 @@ const Sidebar = ({
   hostUrl
 }) => {
   useEffect(() => {
-    console.log({ componentSays: hostUrl });
     fetchPartitions();
   }, [fetchPartitions, hostUrl]);
   useEffect(() => {

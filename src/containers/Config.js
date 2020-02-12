@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { tryHostUrl, toggleModal } from '../store/actions/';
 import '../stylesheets/containers/config.scss';
+import '../stylesheets/containers/buttons.scss';
 
 const Config = ({ config, toggleModal, tryHostUrl }) => {
   const [url, setUrl] = useState('');

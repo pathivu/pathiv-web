@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import '../stylesheets/components/datepicker.scss';
+import '../stylesheets/components/buttons.scss';
 
 const CustomDatePicker = ({ closeModal, setInput, time }) => {
   const [startTime, setStartTime] = useState(
@@ -39,7 +40,7 @@ const CustomDatePicker = ({ closeModal, setInput, time }) => {
       </div>
       <div className="footer">
         <button
-          className="submit"
+          className="submit-button"
           onClick={() => {
             setInput({ field: 'start_ts', value: moment(startTime).unix() });
             setInput({ field: 'end_ts', value: moment(endTime).unix() });

@@ -11,9 +11,7 @@ import {
 export const fetchPartitions = () => dispatch =>
   axios({
     method: 'get',
-    url:
-      console.log({ hostUrl: localStorage.getItem('hostUrl') }) ||
-      `${localStorage.getItem('hostUrl')}/partitions`,
+    url: `${localStorage.getItem('hostUrl')}/partitions`,
     headers: {
       'Access-Control-Allow-Origin': '*'
     }
@@ -23,7 +21,7 @@ export const fetchPartitions = () => dispatch =>
       dispatch(setPartitions(data.data.partitions));
     })
     .catch(error => {
-      console.log({ error });
+      console.error({ error });
     });
 
 const setPartitions = partitions => ({
@@ -57,11 +55,10 @@ export const fetchQueries = ({
     }
   })
     .then(data => {
-      console.log({ data });
       dispatch(setQueries(data.data.data));
     })
     .catch(error => {
-      console.log({ error });
+      console.error({ error });
     });
 
 const setQueries = queries => ({
