@@ -1,0 +1,51 @@
+@import '../variables.scss';
+
+.config-container {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  width: auto;
+  height: 90vh;
+  background: $input-background;
+  padding: 20px;
+  z-index: 2;
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .close {
+      cursor: pointer;
+      padding: 5px;
+      &:hover {
+        background: #5c677c;
+        border-radius: 100px;
+      }
+    }
+  }
+  .body {
+    .input {
+      -webkit-appearance: none;
+      box-sizing: border-box;
+      border: 0;
+      background: $background;
+      padding: 1.2rem 1rem;
+      border-radius: 8px;
+      width: 100%;
+      color: $font-color;
+      font-size: 1.2rem;
+      letter-spacing: 1.13px;
+      outline: 0;
+      margin-right: 20px;
+      margin-top: 10px;
+    }
+  }
+  .footer {
+    position: absolute;
+    bottom: 30px;
+    width: 95%;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
